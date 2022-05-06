@@ -1,0 +1,51 @@
+movies = {
+    StarWars: 4.8, 
+    Divergent: 4.7
+    }
+  
+  puts "What would you like to do? "
+  
+  choice = gets.chomp.downcase
+  
+  case choice
+  when "add"
+    puts "What movie would you like to add? "
+    title = gets.chomp
+      if movies[title.to_sym].nil?
+        puts "What rating does the movie have? "
+        rating = gets.chomp.to_f
+        movies[title.to_sym] = rating.to_f
+        puts "You added #{title} with a rating of #{rating}!"
+      else
+       puts "Already exists!"
+      end
+  when "update"
+    puts "What movie would you like to update?"
+    title = gets.chomp
+    if movies[title.to_sym].nil?
+    puts "Movie does not exist!"
+    else
+      puts "New rating: "
+      rating = gets.chomp.to_f
+      movies[title] = rating.to_f
+      puts "Your updated rating for #{title} is #{rating}"
+    end
+  when "display"
+    movies.each do | movie, rating |
+    puts "#{movie}: #{rating}"
+    end
+  when "delete"
+    puts "Which title would you like to delete?"
+    title = gets.chomp
+    if movies[title.to_sym].nil?
+      puts "Movie does not exist!"
+    else
+      movies.delete(title.to_sym)
+      puts "Title has been deleted!"
+    end
+  else
+    puts "Error!"
+  end
+  
+  
+  
